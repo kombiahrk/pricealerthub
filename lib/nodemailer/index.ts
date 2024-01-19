@@ -85,16 +85,10 @@ const transporter = nodemailer.createTransport({
     host: "sandbox.smtp.mailtrap.io",
     port: 2525,
     auth: {
-        user: "ca3af3a911abb7",
-        pass: "ccee685d04a00c"
-    }
-    // host: 'mail.madhuraitsolutions.com',
-    // port: 587, // 587
-    // auth: {
-    //     user: 'pricealrethub@madhuraitsolutions.com',
-    //     pass: process.env.EMAIL_PASSWORD,
-    // },
-    // maxConnections: 1
+        user: process.env.EMAIL_USERNAME,
+        pass: process.env.EMAIL_PASSWORD
+    },
+    maxConnections: 1
 })
 
 export const sendEmail = async (emailContent: EmailContent, sendTo: string[]) => {
