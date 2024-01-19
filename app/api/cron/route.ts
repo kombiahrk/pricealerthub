@@ -30,7 +30,7 @@ export async function GET() {
                 const updatedPriceHistory = [
                     ...currentProduct.priceHistory,
                     { price: scrapedProduct.currentPrice }
-                ]
+                ];
 
                 const product = {
                     ...scrapedProduct,
@@ -38,7 +38,7 @@ export async function GET() {
                     lowestPrice: getLowestPrice(updatedPriceHistory),
                     highestPrice: getHighestPrice(updatedPriceHistory),
                     averagePrice: getAveragePrice(updatedPriceHistory),
-                }
+                };
 
                 const updatedProduct = await Product.findOneAndUpdate(
                     { url: product.url },
@@ -65,7 +65,7 @@ export async function GET() {
                 return updatedProduct;
 
             })
-        )
+        );
 
         return NextResponse.json({
             message: "Ok",
@@ -73,6 +73,6 @@ export async function GET() {
           });
           
     } catch (error: any) { 
-        throw new Error('Error in GET: ${error}') 
+        throw new Error(`Failed to get all products: ${error.message}`);
     }
 }
